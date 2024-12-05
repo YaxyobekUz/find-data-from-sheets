@@ -10,6 +10,7 @@ import {
 
 // Pages
 import Home from "./pages/Home";
+import History from "./pages/History";
 
 // Layouts
 import MainLayout from "./layouts/MainLayout";
@@ -19,6 +20,7 @@ const App = () => {
     createRoutesFromElements(
       <Route path="/" element={<MainLayout />}>
         <Route index element={<Home />} />
+        <Route path="history" element={<History />} />
       </Route>
     )
   );
