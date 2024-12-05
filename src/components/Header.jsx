@@ -36,7 +36,7 @@ const Header = () => {
             <ul className="flex items-center gap-3.5 sm:gap-5">
               {/* history */}
               <li>
-                <Link to="/history" className="btn-stroke h-10 px-5">
+                <Link to="/history" className="btn-stroke h-10 px-3.5 sm:px-5">
                   <Icon src={recentIcon} alt="Recent icon" />
                   <span className="text-primary-default">Tarix</span>
                 </Link>
@@ -44,7 +44,7 @@ const Header = () => {
 
               {/* search */}
               <li>
-                <Link to="/" className="btn-stroke h-10 px-5">
+                <Link to="/" className="btn-stroke h-10 px-3.5 sm:px-5">
                   <Icon src={searchIcon} alt="Search icon" />
                   <span>Qidirish</span>
                 </Link>

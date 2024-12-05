@@ -74,7 +74,7 @@ const Home = () => {
 
   return (
     <div className="container pt-6 pb-20">
-      <form onSubmit={handleSearch} className="flex gap-4 mb-8">
+      <form onSubmit={handleSearch} className="flex gap-4 mb-5 sm:mb-8">
         {/* Input wrapper */}
         <label className="flex items-center gap-3 px-3.5 w-full h-11 bg-white rounded-xl sm:px-4">
           {/* search icon */}
@@ -169,7 +169,7 @@ const Home = () => {
               referrerPolicy="no-referrer"
               className="btn-stroke h-11 px-5 border-none hover:bg-white/70"
             >
-              <span>Telegram'da Ulashish</span>
+              <span>Ulashish</span>
               <Icon src={shareIcon} className="size-5" />
             </a>
           </div>
