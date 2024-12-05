@@ -6,7 +6,7 @@
 
 @layer base {
   body {
-    @apply bg-white font-Inter text-base text-neutral-dark font-normal;
+    @apply bg-gray-light font-Inter text-base text-neutral-dark font-normal;
   }
 }
 
@@ -18,7 +18,7 @@
   }
 
   .btn-primary {
-    @apply btn bg-primary-default rounded-lg text-white hover:bg-primary-default/80;
+    @apply btn bg-primary-default rounded-lg text-white hover:bg-primary-default/80 disabled:bg-primary-default/50;
   }
 
   .btn-stroke {
@@ -30,6 +30,6 @@
 
 @layer utilities {
   .container {
-    @apply max-w-7xl w-full px-5 mx-auto;
+    @apply max-w-7xl w-full px-3.5 mx-auto sm:px-4 md:px-5;
   }
 }
