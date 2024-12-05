@@ -11,24 +11,29 @@ import searchIcon from "../assets/images/icons/search.svg";
 
 const Header = () => {
   return (
-    <header className="bg-white py-4">
+    <header className="sticky top-0 inset-x-0 bg-white py-4">
       <div className="container">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-1">
+          <Link to="/" className="flex items-center gap-3.5">
             {/* logo icon */}
             <img
-              width={181}
-              height={48}
+              width={40}
+              height={40}
               src={logoIcon}
-              className="w-auto h-12"
+              className="size-9 sm:size-10"
               alt="Mene Market logo svg icon"
             />
+
+            {/* logo text */}
+            <span className="hidden font-medium leading-[18px] sm:inline">
+              Ma'lumtolarni <br /> qidirish
+            </span>
           </Link>
 
           {/* Nav */}
           <nav>
-            <ul className="flex items-center gap-5">
+            <ul className="flex items-center gap-3.5 sm:gap-5">
               {/* history */}
               <li>
                 <Link to="/history" className="btn-stroke h-10 px-5">
