@@ -11,7 +11,7 @@ import searchIcon from "../assets/images/icons/search.svg";
 
 const Header = () => {
   return (
-    <header className="sticky top-0 inset-x-0 bg-white py-4">
+    <header className="sticky top-0 inset-x-0 bg-gradient-to-b from-white to-gray-light py-4">
       <div className="container">
         <div className="flex items-center justify-between">
           {/* Logo */}

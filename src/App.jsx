@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 // Router
 import {
@@ -15,7 +15,13 @@ import History from "./pages/History";
 // Layouts
 import MainLayout from "./layouts/MainLayout";
 
+// Telegram web app
+import useTelegram from "./hooks/useTelegram";
+
 const App = () => {
+  const { tg } = useTelegram();
+  useEffect(() => tg.setHeaderColor("#fff"), []);
+
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<MainLayout />}>

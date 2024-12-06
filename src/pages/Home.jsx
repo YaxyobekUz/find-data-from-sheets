@@ -6,11 +6,8 @@ import axios from "axios";
 // Components
 import Icon from "../components/Icon";
 
-// Telegram
+// Telegram web app
 import useTelegram from "../hooks/useTelegram";
-
-// Utils
-import { extractNumbers, formatDate, formatTime } from "../utils";
 
 // Stickers
 import Lottie from "lottie-react";
@@ -22,9 +19,12 @@ import crossIcon from "../assets/images/icons/cross.svg";
 import shareIcon from "../assets/images/icons/share.svg";
 import searchIcon from "../assets/images/icons/search.svg";
 
+// Utils
+import { extractNumbers, formatDate, formatTime } from "../utils";
+
 const Home = () => {
   const inputRef = useRef();
-  const { user } = useTelegram();
+  const { tg, user } = useTelegram();
   const [data, setData] = useState(null);
   const [query, setQuery] = useState("");
   const [loader, setLoader] = useState(false);
@@ -207,15 +207,13 @@ const Home = () => {
 
           {/* share link */}
           <div className="flex justify-center">
-            <a
-              target="_blank"
-              href={dataTgShareUrl}
-              referrerPolicy="no-referrer"
+            <button
+              onClick={() => tg.openTelegramLink(dataTgShareUrl)}
               className="btn-stroke h-11 px-5 border-none hover:bg-white/70"
             >
               <span>Ulashish</span>
               <Icon src={shareIcon} className="size-5" />
-            </a>
+            </button>
           </div>
         </div>
       )}
