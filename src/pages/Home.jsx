@@ -6,8 +6,11 @@ import axios from "axios";
 // Components
 import Icon from "../components/Icon";
 
+// Telegram
+import useTelegram from "../hooks/useTelegram";
+
 // Utils
-import { extractNumbers } from "../utils";
+import { extractNumbers, formatDate, formatTime } from "../utils";
 
 // Stickers
 import Lottie from "lottie-react";
@@ -21,6 +24,7 @@ import searchIcon from "../assets/images/icons/search.svg";
 
 const Home = () => {
   const inputRef = useRef();
+  const { user } = useTelegram();
   const [data, setData] = useState(null);
   const [query, setQuery] = useState("");
   const [loader, setLoader] = useState(false);
@@ -44,6 +48,14 @@ const Home = () => {
     e.preventDefault();
     const id = extractNumbers(query);
 
+    if (!user?.id) {
+      return setError({
+        status: true,
+        message:
+          "Kechirasiz, sizda ma'lumotlarni olish uchun huquqingiz yetarli emas!",
+      });
+    }
+
     if (!loader && id) {
       setData(null);
       setLoader(true);
@@ -51,12 +63,44 @@ const Home = () => {
 
       // Send a request
       axios
-        .get(`${apiUrl}?id=${id}`)
+        .get(`${apiUrl}?id=${id}&userId=${user.id}`)
         .then((res) => {
           const { data, success } = res.data;
           if (success) {
             setData(data);
+            const date = new Date();
             setDataTgShareUrl(res.data.shareUrl);
+            const recentlySearchedData = JSON.parse(
+              localStorage.getItem("recently-searched-data")
+            );
+
+            // Save data to local storage
+            if (recentlySearchedData && recentlySearchedData?.length > 0) {
+              localStorage.setItem(
+                "recently-searched-data",
+                JSON.stringify(
+                  [
+                    {
+                      data: data,
+                      date: formatDate(date),
+                      time: formatTime(date),
+                    },
+                    ...recentlySearchedData,
+                  ].slice(0, 40)
+                )
+              );
+            } else {
+              localStorage.setItem(
+                "recently-searched-data",
+                JSON.stringify([
+                  {
+                    data: data,
+                    date: formatDate(date),
+                    time: formatTime(date),
+                  },
+                ])
+              );
+            }
           } else {
             setError({ status: true, message: res.data.message });
           }
